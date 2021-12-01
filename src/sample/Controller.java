@@ -9,7 +9,7 @@ import javafx.scene.control.ListView;
 public class Controller {
 
     @FXML
-    public Button btnSorsolas;
+    public Button btnSorsolasRendezes;
     @FXML
     public ListView listHuzottSzamok;
     @FXML
