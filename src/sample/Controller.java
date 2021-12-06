@@ -5,7 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -14,7 +14,7 @@ import java.util.*;
 public class Controller {
 
     private List<Integer> sorsoltSzamokListaja = new ArrayList<>();
-    private Random random = new Random();
+    private final Random random = new Random();
     private int kisorsoltSzam;
     private int kihuzottakSzama;
     private int elsoSzam, masodikSzam, harmadikSzam, negyedikSzam, otodikSzam;
@@ -40,8 +40,14 @@ public class Controller {
 
     public void SorsolasClick(ActionEvent actionEvent) {
         sorsolosVeletlenSzamGenerator();
-        sorsol();
+        for (int i = 0; i < 5; i++) {
+            sorsol();
+        }
+
         veletlensorsolo();
+        sorsoltSzamokListaja.clear();
+
+
 
 
     }
@@ -65,16 +71,20 @@ public class Controller {
         timer.schedule(timerTask, 1000, 1000);
         Timer timerMasik = new Timer();
         TimerTask ujTimerTask = new TimerTask() {
+
             @Override
             public void run() {
                 timer.cancel();
-                    kisorsoltSzam = random.nextInt(90) + 1;
-                    Platform.runLater(() -> lblSorsoltSzam.setText(Integer.toString(kisorsoltSzam)));
-
+                kisorsoltSzam = random.nextInt(90) + 1;
+                Platform.runLater(() -> lblSorsoltSzam.setText(Integer.toString(kisorsoltSzam)));
             }
+
+
+
         };
         timerMasik.schedule(ujTimerTask, 1500);
         sorsoltSzamokListaja.add(kisorsoltSzam);
+
 
     }
 
@@ -91,7 +101,7 @@ public class Controller {
 
     private void rendez() {
         btnSorsolasRendezes.setText("Rendez");
-        Collections.sort(sorsoltSzamokListaja);
+        sorsoltSzamokListaja.sort(Comparator.naturalOrder());
 
     }
 }
