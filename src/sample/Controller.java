@@ -40,8 +40,8 @@ public class Controller {
 
     public void SorsolasClick(ActionEvent actionEvent) {
         sorsolosVeletlenSzamGenerator();
-        veletlensorsolo();
         sorsol();
+        veletlensorsolo();
 
 
     }
@@ -62,38 +62,30 @@ public class Controller {
             }
 
         };
-        timer.schedule(timerTask, 1, 1);
+        timer.schedule(timerTask, 1000, 1000);
         Timer timerMasik = new Timer();
         TimerTask ujTimerTask = new TimerTask() {
             @Override
             public void run() {
                 timer.cancel();
-                kisorsoltSzam = random.nextInt(90) + 1;
-                Platform.runLater(() -> lblSorsoltSzam.setText(Integer.toString(kisorsoltSzam)));
+                    kisorsoltSzam = random.nextInt(90) + 1;
+                    Platform.runLater(() -> lblSorsoltSzam.setText(Integer.toString(kisorsoltSzam)));
+
             }
         };
         timerMasik.schedule(ujTimerTask, 1500);
+        sorsoltSzamokListaja.add(kisorsoltSzam);
+
     }
 
-    private void veletlensorsolo() {
-        if (kihuzottakSzama == 0) {
-            lblSorsoltSzam.setText(Integer.toString(kisorsoltSzam));
-            elsoSzam = random.nextInt(90) + 1;
-            masodikSzam = random.nextInt(90) + 1;
-            harmadikSzam = random.nextInt(90) + 1;
-            negyedikSzam = random.nextInt(90) + 1;
-            otodikSzam = random.nextInt(90) + 1;
-            kihuzottakSzama++;
 
-        }
-        else if (kihuzottakSzama == 5) {
-            kisorsoltszam1.setText("" + elsoSzam);
-            kisorsoltszam2.setText("" + masodikSzam);
-            kisorsoltszam3.setText("" + harmadikSzam);
-            kisorsoltszam4.setText("" + negyedikSzam);
-            kisorsoltszam5.setText("" + otodikSzam);
-            rendez();
-        }
+    private void veletlensorsolo() {
+        kisorsoltszam1.setText(Integer.toString(sorsoltSzamokListaja.get(0)));
+        kisorsoltszam2.setText(Integer.toString(sorsoltSzamokListaja.get(1)));
+        kisorsoltszam3.setText(Integer.toString(sorsoltSzamokListaja.get(2)));
+        kisorsoltszam4.setText(Integer.toString(sorsoltSzamokListaja.get(3)));
+        kisorsoltszam5.setText(Integer.toString(sorsoltSzamokListaja.get(4)));
+        rendez();
 
     }
 

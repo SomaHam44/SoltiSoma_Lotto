@@ -15,8 +15,8 @@
         <RowConstraints maxHeight="60.0" minHeight="20" />
     </rowConstraints>
     <columnConstraints>
-        <ColumnConstraints maxWidth="40.0" minWidth="10.0" prefWidth="15.400000000000002" />
-        <ColumnConstraints maxWidth="23.79999618530273" minWidth="4.600000000000001" prefWidth="23.79999618530273" />
+        <ColumnConstraints maxWidth="40.0" minWidth="10.0" prefWidth="21.99999809265137" />
+        <ColumnConstraints maxWidth="23.79999618530273" minWidth="4.600000000000001" prefWidth="16.000001907348633" />
         <ColumnConstraints maxWidth="31.799999999999997" minWidth="0.0" prefWidth="21.000003814697266" />
         <ColumnConstraints maxWidth="66.00000000000001" minWidth="0.0" prefWidth="18.80000000000001" />
         <ColumnConstraints maxWidth="82.40000000000002" minWidth="15.800000000000011" prefWidth="51.20000000000002" />
@@ -28,15 +28,15 @@
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor></Button>
-        <Label fx:id="lblSorsoltSzam"  text="15" GridPane.columnIndex="4" GridPane.rowIndex="0">
+        <Label fx:id="lblSorsoltSzam" text="15" GridPane.columnIndex="4" GridPane.rowIndex="0">
             <font>
         <Font size="30.0" />
         </font>
         </Label>
-        <Label fx:id="kisorsoltszam1" text=" 3" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-        <Label fx:id="kisorsoltszam2"  text="15" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Label fx:id="kisorsoltszam1" prefHeight="18.0" prefWidth="22.0" text=" 3" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <Label fx:id="kisorsoltszam2" text="15" GridPane.columnIndex="1" GridPane.rowIndex="1" />
         <Label fx:id="kisorsoltszam3" text=" 37" GridPane.columnIndex="2" GridPane.rowIndex="1" />
         <Label fx:id="kisorsoltszam4" text="53" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-        <Label fx:id="kisorsoltszam5"  text="90" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+        <Label fx:id="kisorsoltszam5" text="90" GridPane.columnIndex="4" GridPane.rowIndex="1" />
     </children>
 </GridPane>
