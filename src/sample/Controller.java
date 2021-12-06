@@ -14,7 +14,6 @@ import java.util.*;
 public class Controller {
     private List<Integer> sorsoltSzamokListaja = new ArrayList<>();
     private int kisorsoltSzam;
-    private String kisorsoltSzamString;
     private int kihuzottakSzama;
 
 
@@ -48,19 +47,13 @@ public class Controller {
         }
 
         kisorsoltSzam = (int) Math.random() * sorsoltSzamokListaja.size() - 1;
-        kisorsoltSzam = Integer.parseInt(kisorsoltSzamString);
         timer = new Timer();
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
                 LocalDateTime aktualis = LocalDateTime.now();
                 Duration meddig = Duration.between(LocalDateTime.now(), aktualis);
-                Platform.runLater(() -> lblSorsoltSzam.setText(kisorsoltSzamString));
-
-
-
-
-
+                Platform.runLater(() -> lblSorsoltSzam.setText((int) (Math.random() * 100) + 1 + "" ));
             }
 
         };
