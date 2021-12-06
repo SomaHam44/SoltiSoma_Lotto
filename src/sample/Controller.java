@@ -16,8 +16,7 @@ public class Controller {
     private List<Integer> sorsoltSzamokListaja = new ArrayList<>();
     private final Random random = new Random();
     private int kisorsoltSzam;
-    private int kihuzottakSzama;
-    private int elsoSzam, masodikSzam, harmadikSzam, negyedikSzam, otodikSzam;
+    private boolean sorsolok = true;
 
     @FXML
     public Button btnSorsolasRendezes;
@@ -39,11 +38,11 @@ public class Controller {
 
 
     public void SorsolasClick(ActionEvent actionEvent) {
-        sorsolosVeletlenSzamGenerator();
-        sorsol();
-        veletlensorsolo();
-        sorsoltSzamokListaja.clear();
-
+        if (sorsolok) {
+            sorsolosVeletlenSzamGenerator();
+            sorsol();
+            veletlensorsolo();
+        }
     }
 
     private int sorsolosVeletlenSzamGenerator() {
@@ -52,12 +51,11 @@ public class Controller {
     }
 
     private void sorsol() {
+        sorsolok = true;
         timer = new Timer();
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
-
-                sorsolosVeletlenSzamGenerator();
                 Platform.runLater(() -> lblSorsoltSzam.setText(Integer.toString(random.nextInt(90) + 1)));
             }
 
@@ -69,35 +67,43 @@ public class Controller {
             @Override
             public void run() {
                 timer.cancel();
-                for (int i = 0; i < 5; i++) {
-                    sorsolosVeletlenSzamGenerator();
-                }
                 Platform.runLater(() -> lblSorsoltSzam.setText(Integer.toString(kisorsoltSzam)));
             }
-
-
-
         };
         timerMasik.schedule(ujTimerTask, 1500);
         sorsoltSzamokListaja.add(kisorsoltSzam);
+
 
 
     }
 
 
     private void veletlensorsolo() {
-        kisorsoltszam1.setText(Integer.toString(sorsoltSzamokListaja.get(0)));
-        kisorsoltszam2.setText(Integer.toString(sorsoltSzamokListaja.get(1)));
-        kisorsoltszam3.setText(Integer.toString(sorsoltSzamokListaja.get(2)));
-        kisorsoltszam4.setText(Integer.toString(sorsoltSzamokListaja.get(3)));
-        kisorsoltszam5.setText(Integer.toString(sorsoltSzamokListaja.get(4)));
+        for (int i = 0; i < sorsoltSzamokListaja.size(); i++) {
+            kisorsoltszam1.setText(Integer.toString(sorsoltSzamokListaja.get(0)));
+            kisorsoltszam2.setText(Integer.toString(sorsoltSzamokListaja.get(1)));
+            kisorsoltszam3.setText(Integer.toString(sorsoltSzamokListaja.get(2)));
+            kisorsoltszam4.setText(Integer.toString(sorsoltSzamokListaja.get(3)));
+            kisorsoltszam5.setText(Integer.toString(sorsoltSzamokListaja.get(4)));
+        }
+
         rendez();
+
+
+
 
     }
 
     private void rendez() {
         btnSorsolasRendezes.setText("Rendez");
         sorsoltSzamokListaja.sort(Comparator.naturalOrder());
+        for (int i = 0; i < sorsoltSzamokListaja.size(); i++) {
+            kisorsoltszam1.setText(Integer.toString(sorsoltSzamokListaja.get(0)));
+            kisorsoltszam2.setText(Integer.toString(sorsoltSzamokListaja.get(1)));
+            kisorsoltszam3.setText(Integer.toString(sorsoltSzamokListaja.get(2)));
+            kisorsoltszam4.setText(Integer.toString(sorsoltSzamokListaja.get(3)));
+            kisorsoltszam5.setText(Integer.toString(sorsoltSzamokListaja.get(4)));
+        }
 
     }
 }
