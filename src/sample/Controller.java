@@ -40,15 +40,9 @@ public class Controller {
 
     public void SorsolasClick(ActionEvent actionEvent) {
         sorsolosVeletlenSzamGenerator();
-        for (int i = 0; i < 5; i++) {
-            sorsol();
-        }
-
+        sorsol();
         veletlensorsolo();
         sorsoltSzamokListaja.clear();
-
-
-
 
     }
 
@@ -62,20 +56,22 @@ public class Controller {
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
-                LocalDateTime aktualis = LocalDateTime.now();
-                Duration meddig = Duration.between(LocalDateTime.now(), aktualis);
+
+                sorsolosVeletlenSzamGenerator();
                 Platform.runLater(() -> lblSorsoltSzam.setText(Integer.toString(random.nextInt(90) + 1)));
             }
 
         };
-        timer.schedule(timerTask, 1000, 1000);
+        timer.scheduleAtFixedRate(timerTask, 0, 10);
         Timer timerMasik = new Timer();
         TimerTask ujTimerTask = new TimerTask() {
 
             @Override
             public void run() {
                 timer.cancel();
-                kisorsoltSzam = random.nextInt(90) + 1;
+                for (int i = 0; i < 5; i++) {
+                    sorsolosVeletlenSzamGenerator();
+                }
                 Platform.runLater(() -> lblSorsoltSzam.setText(Integer.toString(kisorsoltSzam)));
             }
 
