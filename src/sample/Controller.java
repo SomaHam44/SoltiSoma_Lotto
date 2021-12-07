@@ -16,7 +16,6 @@ public class Controller {
     private List<Integer> sorsoltSzamokListaja = new ArrayList<>();
     private final Random random = new Random();
     private int kisorsoltSzam;
-    private boolean rendezes = false;
 
     @FXML
     public Button btnSorsolasRendezes;
@@ -38,17 +37,13 @@ public class Controller {
 
 
     public void SorsolasClick() {
-
         sorsolosVeletlenSzamGenerator();
         sorsol();
         veletlensorsolo();
-        rendez();
-
-
+        //rendez();
     }
 
     private int sorsolosVeletlenSzamGenerator() {
-        rendezes = false;
         kisorsoltSzam = random.nextInt(90) + 1;
         return kisorsoltSzam;
     }
@@ -76,44 +71,59 @@ public class Controller {
         sorsoltSzamokListaja.add(kisorsoltSzam);
 
 
+        for (int i = 0; i < sorsoltSzamokListaja.size(); i++) {
+            kisorsoltszam1.setText(Integer.toString(sorsoltSzamokListaja.get(0)));
+            kisorsoltszam2.setText(Integer.toString(sorsoltSzamokListaja.get(1)));
+            kisorsoltszam3.setText(Integer.toString(sorsoltSzamokListaja.get(2)));
+            kisorsoltszam4.setText(Integer.toString(sorsoltSzamokListaja.get(3)));
+            kisorsoltszam5.setText(Integer.toString(sorsoltSzamokListaja.get(4)));
+        }
 
     }
 
 
     private void veletlensorsolo() {
-        for (int i = 0; i < sorsoltSzamokListaja.size(); i++) {
-            kisorsoltszam1.setText(Integer.toString(sorsoltSzamokListaja.get(0)));
-            kisorsoltszam2.setText(Integer.toString(sorsoltSzamokListaja.get(1)));
-            kisorsoltszam3.setText(Integer.toString(sorsoltSzamokListaja.get(2)));
-            kisorsoltszam4.setText(Integer.toString(sorsoltSzamokListaja.get(3)));
-            kisorsoltszam5.setText(Integer.toString(sorsoltSzamokListaja.get(4)));
+        if (sorsoltSzamokListaja.size() <= 5 ) {
+            for (int i = 0; i < sorsoltSzamokListaja.size(); i++) {
+                kisorsoltszam1.setText(Integer.toString(sorsoltSzamokListaja.get(0)));
+                kisorsoltszam2.setText(Integer.toString(sorsoltSzamokListaja.get(1)));
+                kisorsoltszam3.setText(Integer.toString(sorsoltSzamokListaja.get(2)));
+                kisorsoltszam4.setText(Integer.toString(sorsoltSzamokListaja.get(3)));
+                kisorsoltszam5.setText(Integer.toString(sorsoltSzamokListaja.get(4)));
+            }
+            btnSorsolasRendezes.setText("Rendez");
+            sorsoltSzamokListaja.sort(Comparator.naturalOrder());
         }
 
-        rendez();
-
-
-
-
-    }
-
-    private void rendez() {
-        rendezes = true;
-        btnSorsolasRendezes.setText("Rendez");
-        sorsoltSzamokListaja.sort(Comparator.naturalOrder());
-        for (int i = 0; i < sorsoltSzamokListaja.size(); i++) {
-            kisorsoltszam1.setText(Integer.toString(sorsoltSzamokListaja.get(0)));
-            kisorsoltszam2.setText(Integer.toString(sorsoltSzamokListaja.get(1)));
-            kisorsoltszam3.setText(Integer.toString(sorsoltSzamokListaja.get(2)));
-            kisorsoltszam4.setText(Integer.toString(sorsoltSzamokListaja.get(3)));
-            kisorsoltszam5.setText(Integer.toString(sorsoltSzamokListaja.get(4)));
+        else if (btnSorsolasRendezes.getText() == "Rendez") {
+            for (int i = 0; i < sorsoltSzamokListaja.size(); i++) {
+                kisorsoltszam1.setText(Integer.toString(sorsoltSzamokListaja.get(0)));
+                kisorsoltszam2.setText(Integer.toString(sorsoltSzamokListaja.get(1)));
+                kisorsoltszam3.setText(Integer.toString(sorsoltSzamokListaja.get(2)));
+                kisorsoltszam4.setText(Integer.toString(sorsoltSzamokListaja.get(3)));
+                kisorsoltszam5.setText(Integer.toString(sorsoltSzamokListaja.get(4)));
+            }
+            btnSorsolasRendezes.setText("Sorsol");
+            sorsoltSzamokListaja.clear();
+            lblSorsoltSzam.setText("");
+            kisorsoltszam1.setText("");
+            kisorsoltszam2.setText("");
+            kisorsoltszam3.setText("");
+            kisorsoltszam4.setText("");
+            kisorsoltszam5.setText("");
         }
-        sorsoltSzamokListaja.clear();
+
+
+
+
+
 
 
     }
 
-    private void ujra() {
-        btnSorsolasRendezes.setText("Sorsol");
-        sorsol();
-    }
+
+
+
+
+
 }
