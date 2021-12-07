@@ -16,7 +16,7 @@ public class Controller {
     private List<Integer> sorsoltSzamokListaja = new ArrayList<>();
     private final Random random = new Random();
     private int kisorsoltSzam;
-    private boolean sorsolok = true;
+    private boolean rendezes = false;
 
     @FXML
     public Button btnSorsolasRendezes;
@@ -37,12 +37,14 @@ public class Controller {
 
 
 
-    public void SorsolasClick(ActionEvent actionEvent) {
-        if (sorsolok) {
-            sorsolosVeletlenSzamGenerator();
-            sorsol();
-            veletlensorsolo();
-        }
+    public void SorsolasClick() {
+
+        sorsolosVeletlenSzamGenerator();
+        sorsol();
+        veletlensorsolo();
+        rendez();
+
+
     }
 
     private int sorsolosVeletlenSzamGenerator() {
@@ -51,7 +53,6 @@ public class Controller {
     }
 
     private void sorsol() {
-        sorsolok = true;
         timer = new Timer();
         TimerTask timerTask = new TimerTask() {
             @Override
@@ -95,6 +96,7 @@ public class Controller {
     }
 
     private void rendez() {
+        rendezes = true;
         btnSorsolasRendezes.setText("Rendez");
         sorsoltSzamokListaja.sort(Comparator.naturalOrder());
         for (int i = 0; i < sorsoltSzamokListaja.size(); i++) {
@@ -104,6 +106,13 @@ public class Controller {
             kisorsoltszam4.setText(Integer.toString(sorsoltSzamokListaja.get(3)));
             kisorsoltszam5.setText(Integer.toString(sorsoltSzamokListaja.get(4)));
         }
+        sorsoltSzamokListaja.clear();
 
+
+    }
+
+    private void ujra() {
+        btnSorsolasRendezes.setText("Sorsol");
+        sorsol();
     }
 }
