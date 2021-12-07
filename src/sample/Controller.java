@@ -48,6 +48,7 @@ public class Controller {
     }
 
     private int sorsolosVeletlenSzamGenerator() {
+        rendezes = false;
         kisorsoltSzam = random.nextInt(90) + 1;
         return kisorsoltSzam;
     }

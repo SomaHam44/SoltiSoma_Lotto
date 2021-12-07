@@ -22,7 +22,7 @@
         <ColumnConstraints maxWidth="82.0" minWidth="16.0" prefWidth="51.0" />
     </columnConstraints>
     <children>
-        <Button fx:id="btnSorsolasRendezes" maxWidth="70.0" minHeight="30.0" minWidth="60.0" onAction="#SorsolasClick" style="-fx-border-width: 2;  -fx-border-color: black;  -fx-background-color: lightgrey;        -fx-border-style: solid; " text="Sorsol" GridPane.columnSpan="3" GridPane.rowIndex="0">
+        <Button fx:id="btnSorsolasRendezes" maxWidth="80.0" minHeight="30.0" minWidth="60.0" onAction="#SorsolasClick" style="-fx-border-width: 2;  -fx-border-color: black;  -fx-background-color: lightgrey;        -fx-border-style: solid; " text="Sorsol" GridPane.columnSpan="3" GridPane.rowIndex="0">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor></Button>
